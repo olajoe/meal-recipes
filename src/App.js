@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { theme, ThemeProvider } from '@chakra-ui/core'
+
+
+const breakpoints = ["360px", "768px", "1024px", "1440px"]
+breakpoints.sm = breakpoints[0]
+breakpoints.md = breakpoints[1]
+breakpoints.lg = breakpoints[2]
+breakpoints.xl = breakpoints[3]
+
+const newTheme = {
+  ...theme,
+  breakpoints,
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={newTheme}>
+      <div>
+        The meal receipt
+      </div>
+    </ThemeProvider>
+  )
 }
 
 export default App;
