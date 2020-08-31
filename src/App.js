@@ -1,25 +1,27 @@
 import React from 'react'
-import { theme, ThemeProvider } from '@chakra-ui/core'
+import { ChakraProvider } from "@chakra-ui/core"
+import { theme } from "@chakra-ui/core"
+import { merge } from "@chakra-ui/utils"
+
+import Layout from './template/Layout'
+
+const customTheme = merge(theme, {
+  colors: {
+    brand: {
+      900: "#1a365d",
+      800: "#153e75",
+      700: "#2a69ac",
+    },
+  },
+})
 
 
-const breakpoints = ["360px", "768px", "1024px", "1440px"]
-breakpoints.sm = breakpoints[0]
-breakpoints.md = breakpoints[1]
-breakpoints.lg = breakpoints[2]
-breakpoints.xl = breakpoints[3]
-
-const newTheme = {
-  ...theme,
-  breakpoints,
-}
 
 function App() {
   return (
-    <ThemeProvider theme={newTheme}>
-      <div>
-        The meal receipt
-      </div>
-    </ThemeProvider>
+    <ChakraProvider resetCSS theme={customTheme}>
+      <Layout/>
+    </ChakraProvider>
   )
 }
 
