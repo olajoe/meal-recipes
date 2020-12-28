@@ -1,11 +1,14 @@
 import React from 'react'
-import { Flex, Box, Text, Heading } from '@chakra-ui/core'
+import { Container } from '@chakra-ui/core'
 
-function Layout(props) {
+import Header from './Header'
+
+function Layout() {
 	return (
-		<Flex as="nav" align="center" justify="center">
-			<div> Layout page </div>
-		</Flex>
+		<>
+			<Header />
+			<Container centerContent> Content </Container>
+		</>
 	)
 }
 
