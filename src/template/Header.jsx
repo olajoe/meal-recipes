@@ -13,6 +13,7 @@ function Header() {
 
 	return (
 		<Flex
+			p={4}
 			as="nav"
 			alignItems="center"
 			justify="space-between"
