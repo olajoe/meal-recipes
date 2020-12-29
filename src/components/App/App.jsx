@@ -3,7 +3,8 @@ import { ChakraProvider } from '@chakra-ui/core'
 import { theme } from '@chakra-ui/core'
 import { merge } from '@chakra-ui/utils'
 
-import Layout from './template/Layout'
+import Layout from '../../template/Layout'
+import Routing from '../../routes'
 
 const customTheme = merge(theme, {
 	colors: {
@@ -18,7 +19,9 @@ const customTheme = merge(theme, {
 function App() {
 	return (
 		<ChakraProvider resetCSS theme={customTheme}>
-			<Layout />
+			<Layout>
+				<Routing />
+			</Layout>
 		</ChakraProvider>
 	)
 }
