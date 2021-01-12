@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import categoryApi from '../../api/categoryApi'
 
 const CategoryList = () => {

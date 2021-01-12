@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
+import { SWRConfig } from 'swr'
+import axios from 'axios'
 
 import App from './components/App/App'
 import * as serviceWorker from './serviceWorker'
 
 const rootElement = document.getElementById('root')
+
+// fetcher for swr
+const fetcher = (...args) => axios(...args).then((res) => res.data)
 
 const AppWithRouter = () => (
 	<BrowserRouter>
@@ -15,7 +20,9 @@ const AppWithRouter = () => (
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AppWithRouter />
+		<SWRConfig value={{ fetcher }}>
+			<AppWithRouter />
+		</SWRConfig>
 	</React.StrictMode>,
 	rootElement
 )

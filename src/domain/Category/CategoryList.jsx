@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import useSWR from 'swr'
 import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from '@chakra-ui/react'
-
-import { categoryList } from '../../hooks/category'
+import { Link } from 'react-router-dom'
 
 function CategoryList(props) {
-	const { data: categories } = categoryList()
+	// const { data: categories } = categoryList()
+	const { data, error } = useSWR(
+		'https://www.themealdb.com/api/json/v1/1/categories.php'
+	)
+
+	if (error) return <h1>Something went wrong!</h1>
+	if (!data) return <h1>Loading...</h1>
 
 	return (
 		<Table variant="striped" colorScheme="teal">
@@ -18,11 +24,20 @@ function CategoryList(props) {
 				</Tr>
 			</Thead>
 			<Tbody>
-				{categories.map((category) => {
+				{data.categories.map((category) => {
 					return (
 						<Tr key={category.idCategory}>
-							<Td> {category.strCategory} </Td>
-							<Td> {category.strCategoryThumb} </Td>
+							<Td>
+								<Link to={`/category/${category.strCategory}`}>
+									{category.strCategory}
+								</Link>
+							</Td>
+							<Td>
+								<img
+									src={category.strCategoryThumb}
+									alt={category.strCategory}
+								></img>
+							</Td>
 							<Td> {category.strCategoryDescription} </Td>
 						</Tr>
 					)
