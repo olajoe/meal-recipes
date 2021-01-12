@@ -1,34 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from '@chakra-ui/react'
 
+import { categoryList } from '../../hooks/category'
+
 function CategoryList(props) {
+	const { data: categories } = categoryList()
+
 	return (
 		<Table variant="striped" colorScheme="teal">
 			<TableCaption placement="top">Meal categories</TableCaption>
 			<Thead>
 				<Tr>
-					<Th>To convert</Th>
-					<Th>into</Th>
-					<Th isNumeric>multiply by</Th>
+					<Th>Name</Th>
+					<Th>Thumb</Th>
+					<Th>Description</Th>
 				</Tr>
 			</Thead>
 			<Tbody>
-				<Tr>
-					<Td>inches</Td>
-					<Td>millimetres (mm)</Td>
-					<Td isNumeric>25.4</Td>
-				</Tr>
-				<Tr>
-					<Td>feet</Td>
-					<Td>centimetres (cm)</Td>
-					<Td isNumeric>30.48</Td>
-				</Tr>
-				<Tr>
-					<Td>yards</Td>
-					<Td>metres (m)</Td>
-					<Td isNumeric>0.91444</Td>
-				</Tr>
+				{categories.map((category) => {
+					return (
+						<Tr key={category.idCategory}>
+							<Td> {category.strCategory} </Td>
+							<Td> {category.strCategoryThumb} </Td>
+							<Td> {category.strCategoryDescription} </Td>
+						</Tr>
+					)
+				})}
 			</Tbody>
 		</Table>
 	)

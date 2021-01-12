@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Flex, Text, Box, Heading } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const MenuItems = ({ children }) => (
-	<Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+	<Text mt={{ base: 4, md: 0 }} mr={6}>
+		{console.log('children:', children)}
 		{children}
 	</Text>
 )
@@ -10,6 +12,8 @@ const MenuItems = ({ children }) => (
 function Header() {
 	const [show, setShow] = useState(false)
 	const handleToggle = () => setShow(!show)
+
+	const configDisplayMenu = { md: 'flex' }
 
 	return (
 		<Flex
@@ -21,7 +25,9 @@ function Header() {
 			wrap="wrap"
 		>
 			<Box mr={4}>
-				<Heading>Meal Recipes</Heading>
+				<Heading>
+					<Link to="/">Meal Recipes</Link>
+				</Heading>
 			</Box>
 
 			<Box
@@ -41,12 +47,15 @@ function Header() {
 			</Box>
 
 			<Box
-				display={{ xs: show ? 'block' : 'none', md: 'flex' }}
+				// display={{ xs: show ? 'block' : 'none', md: 'flex' }}
+				display={configDisplayMenu}
 				flexGrow={1}
 				alignItems="center"
 				width={{ xs: 'full', md: 'auto' }}
 			>
-				<MenuItems> Menu1 </MenuItems>
+				<MenuItems>
+					<Link to="categories"> Category </Link>
+				</MenuItems>
 				<MenuItems> Menu2 </MenuItems>
 				<MenuItems> Menu3 </MenuItems>
 			</Box>
