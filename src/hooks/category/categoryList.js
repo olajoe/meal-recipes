@@ -12,13 +12,19 @@ const CategoryList = () => {
 			const resp = (await categoryApi.getAll()).data
 			setData(resp.categories)
 		} catch (error) {
-			setData(error)
+			setError(error)
 			console.log('error', error)
 		}
 	}
 
 	useEffect(() => {
+		console.log('trigger load categories')
 		loadCategories()
+
+		return () => {
+			setData([])
+			console.log('cleanup')
+		}
 	}, [])
 
 	return { data }

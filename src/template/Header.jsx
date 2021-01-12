@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 const MenuItems = ({ children }) => (
 	<Text mt={{ base: 4, md: 0 }} mr={6}>
-		{console.log('children:', children)}
 		{children}
 	</Text>
 )
