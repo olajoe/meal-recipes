@@ -4,17 +4,18 @@ import useSWR from 'swr'
 import { Table, Thead, Tbody, Tr, Th, Td, TableCaption } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
+import config from '../../config'
+
+const baseUri = config.meal.uri
 function CategoryList(props) {
 	// const { data: categories } = categoryList()
-	const { data, error } = useSWR(
-		'https://www.themealdb.com/api/json/v1/1/categories.php'
-	)
+	const { data, error } = useSWR(`${baseUri}/categories.php`)
 
 	if (error) return <h1>Something went wrong!</h1>
 	if (!data) return <h1>Loading...</h1>
 
 	return (
-		<Table variant="striped" colorScheme="teal">
+		<Table variant="striped">
 			<TableCaption placement="top">Meal categories</TableCaption>
 			<Thead>
 				<Tr>
@@ -27,11 +28,7 @@ function CategoryList(props) {
 				{data.categories.map((category) => {
 					return (
 						<Tr key={category.idCategory}>
-							<Td>
-								<Link to={`/category/${category.strCategory}`}>
-									{category.strCategory}
-								</Link>
-							</Td>
+							<Td>{category.strCategory}</Td>
 							<Td>
 								<img
 									src={category.strCategoryThumb}

@@ -8,7 +8,7 @@ const CategoryList = () => {
 
 	const loadCategories = async () => {
 		try {
-			const resp = (await categoryApi.getAll()).data
+			const resp = await categoryApi.getAll().data
 			setData(resp.categories)
 		} catch (error) {
 			setError(error)
